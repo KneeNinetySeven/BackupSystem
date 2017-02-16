@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<TabPane prefHeight="454.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.knee.backup.ui.UiController">
+   <tabs>
+      <Tab closable="false" text="Selection">
+         <content>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="654.0">
+               <children>
+                  <SplitPane dividerPositions="0.9926108374384236" orientation="VERTICAL" prefHeight="386.0" prefWidth="654.0">
+                    <items>
+                      <AnchorPane>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <AnchorPane prefHeight="400.0" prefWidth="139.0">
+                                       <children>
+                                          <Button fx:id="setDirectory" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#setDirectoryButtonPressed" prefHeight="25.0" prefWidth="110.0" text="Add Directory" />
+                                          <Button fx:id="remDirectory" layoutX="14.0" layoutY="81.0" mnemonicParsing="false" onAction="#remDirectoryButtonPressed" text="Remove Directory" />
+                                       </children>
+                                    </AnchorPane>
+                                    <ListView fx:id="directoryList" prefHeight="400.0" prefWidth="274.0" />
+                                    <TreeView fx:id="treeView" prefHeight="400.0" prefWidth="239.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="statusLabel" prefHeight="22.0" prefWidth="652.0" text="Status">
+                           <font>
+                              <Font name="Consolas" size="12.0" />
+                           </font>
+                        </Label>
+                    </items>
+                  </SplitPane>
+               </children>
+            </Pane>
+         </content>
+      </Tab>
+      <Tab closable="false" text="Execution">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="targetDir" layoutX="225.0" layoutY="28.0" onAction="#checkTargetDirExistence" onKeyTyped="#checkTargetDirExistence" />
+                  <Label layoutX="31.0" layoutY="26.0" prefHeight="29.0" prefWidth="189.0" text="Path to backup storage directory" />
+                  <Button layoutX="491.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Run" />
+                  <Label layoutX="31.0" layoutY="61.0" prefHeight="29.0" prefWidth="189.0" text="Filename in target directory" />
+                  <TextField fx:id="targetName" layoutX="225.0" layoutY="63.0" />
+                  <Label fx:id="targetDirValid" layoutX="383.0" layoutY="32.0" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
