@@ -22,6 +22,9 @@ public class UiController implements Initializable {
     ObservableList<String> paths;
     TreeItem<String> treeRoot;
 
+    private boolean dirValid = false;
+    private boolean fileValid = false;
+
     @FXML Button setDirectory;
 
     @FXML Button remDirectory;
@@ -82,16 +85,18 @@ public class UiController implements Initializable {
     protected void checkTargetDirExistence(){
         File targetDirFile = new File(targetDir.getText());
         if(!FileWorker.verifyPath(targetDirFile)){
-            runBtn.setDisable(true);
+            dirValid = false;
             targetDirValid.setText("Directory not existent");
         } else {
             if(!targetDirFile.isDirectory()) {
-                runBtn.setDisable(true);
+                dirValid = false;
                 targetDirValid.setText("Target directory is no directory");
+            } else {
+                dirValid = true;
+                targetDirValid.setText("");
             }
-            targetDirValid.setText("");
-            runBtn.setDisable(false);
         }
+        runBtn.setDisable(!(dirValid && fileValid));
     }
 
     @FXML
@@ -99,22 +104,21 @@ public class UiController implements Initializable {
         File targetFile = new File(targetDir.getText() + "/" + targetName.getText());
         String text = "";
 
-        runBtn.setDisable(false);
         if(FileWorker.verifyFile(targetFile)){
             text = "File okay";
-            runBtn.setDisable(runBtn.isDisabled() || false);
+            fileValid = true;
         } else {
             text += "File is already existing";
-            runBtn.setDisable(true);
+            fileValid = false;
         }
 
         if(!FileWorker.verifyFileEnding(targetFile)){
             text += "\nInvalid file ending " + FileWorker.fileEnding(targetFile) + "!";
-            runBtn.setDisable(true);
+            fileValid = false;
         }
 
         targetFileValid.setText(text);
-        runBtn.setDisable(runBtn.isDisabled() || false);
+        runBtn.setDisable(!(dirValid && fileValid));
     }
 
     public void initialize(URL location, ResourceBundle resources) {

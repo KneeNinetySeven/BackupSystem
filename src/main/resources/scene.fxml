@@ -70,10 +70,10 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="targetDir" layoutX="225.0" layoutY="28.0" onAction="#checkTargetDirExistence" onInputMethodTextChanged="#checkTargetDirExistence" onKeyReleased="#checkTargetDirExistence" onKeyTyped="#checkTargetDirExistence" />
-                  <Label layoutX="31.0" layoutY="26.0" prefHeight="29.0" prefWidth="189.0" text="Path to backup storage directory" />
-                  <Button fx:id="runBtn" layoutX="491.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Run" />
-                  <Label layoutX="31.0" layoutY="61.0" prefHeight="29.0" prefWidth="189.0" text="Filename in target directory" />
                   <TextField fx:id="targetName" layoutX="225.0" layoutY="63.0" onAction="#checkTargetFileNotExisting" onInputMethodTextChanged="#checkTargetFileNotExisting" onKeyReleased="#checkTargetFileNotExisting" onKeyTyped="#checkTargetFileNotExisting" />
+                  <Label layoutX="31.0" layoutY="26.0" prefHeight="29.0" prefWidth="189.0" text="Path to backup storage directory" />
+                  <Button fx:id="runBtn" disable="true" layoutX="225.0" layoutY="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Run" />
+                  <Label layoutX="31.0" layoutY="61.0" prefHeight="29.0" prefWidth="189.0" text="Filename in target directory" />
                   <Label fx:id="targetDirValid" layoutX="383.0" layoutY="32.0" prefHeight="17.0" />
                   <Label fx:id="targetFileValid" layoutX="383.0" layoutY="67.0" />
                </children></AnchorPane>

@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class FileWorker {
 
-    static String[] fileEndings = {"zip", "7zip"};
+    static String[] fileEndings = {"zip", "7z"};
 
     public static boolean verifyPath(File directory) {
         return directory.exists();
