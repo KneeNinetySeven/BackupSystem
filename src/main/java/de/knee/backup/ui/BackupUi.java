@@ -22,6 +22,7 @@ public class BackupUi extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("scene.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(true);
         primaryStage.show();
         primaryStage.setMaxHeight(primaryStage.getHeight());
         primaryStage.setMinHeight(primaryStage.getHeight());
