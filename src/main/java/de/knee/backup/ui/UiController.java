@@ -36,6 +36,12 @@ public class UiController implements Initializable {
 
     @FXML Label targetDirValid;
 
+    @FXML TextField targetName;
+
+    @FXML Label targetFileValid;
+
+    @FXML Button runBtn;
+
     @FXML
     protected void setDirectoryButtonPressed() {
         setStatus("Adding Directory.");
@@ -76,13 +82,39 @@ public class UiController implements Initializable {
     protected void checkTargetDirExistence(){
         File targetDirFile = new File(targetDir.getText());
         if(!FileWorker.verifyPath(targetDirFile)){
+            runBtn.setDisable(true);
             targetDirValid.setText("Directory not existent");
         } else {
             if(!targetDirFile.isDirectory()) {
+                runBtn.setDisable(true);
                 targetDirValid.setText("Target directory is no directory");
             }
             targetDirValid.setText("");
+            runBtn.setDisable(false);
         }
+    }
+
+    @FXML
+    protected void checkTargetFileNotExisting(){
+        File targetFile = new File(targetDir.getText() + "/" + targetName.getText());
+        String text = "";
+
+        runBtn.setDisable(false);
+        if(FileWorker.verifyFile(targetFile)){
+            text = "File okay";
+            runBtn.setDisable(runBtn.isDisabled() || false);
+        } else {
+            text += "File is already existing";
+            runBtn.setDisable(true);
+        }
+
+        if(!FileWorker.verifyFileEnding(targetFile)){
+            text += "\nInvalid file ending " + FileWorker.fileEnding(targetFile) + "!";
+            runBtn.setDisable(true);
+        }
+
+        targetFileValid.setText(text);
+        runBtn.setDisable(runBtn.isDisabled() || false);
     }
 
     public void initialize(URL location, ResourceBundle resources) {

@@ -11,7 +11,6 @@ import java.io.File;
 public class ViewTreeBuilder {
 
     public static TreeItem<String> buildRecursiveFromPath(String path, TreeItem<String> treeRoot) {
-
         File folder = new File(path);
 
         treeRoot.setValue(folder.getName());
@@ -23,6 +22,7 @@ public class ViewTreeBuilder {
             } else if (item.isFile()) {
                 TreeItem<String> newItem = new TreeItem<String>();
                 newItem.setValue(item.getName());
+
                 treeRoot.getChildren().add(newItem);
             }
         }
