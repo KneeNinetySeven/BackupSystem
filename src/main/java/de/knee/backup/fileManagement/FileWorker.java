@@ -9,13 +9,13 @@ import java.util.Arrays;
  */
 public class FileWorker {
 
-    static String[] fileEndings = {"zip", "7z"};
+    private String[] fileEndings = {"zip", "7z"};
 
-    public static boolean verifyPath(File directory) {
+    public boolean verifyPath(File directory) {
         return directory.exists();
     }
 
-    public static boolean verifyFile(File file) {
+    public boolean verifyFile(File file) {
         if (file.getName().split("\\." + fileEnding(file)).length > 0) {
             if(!file.getName().split("\\." + fileEnding(file))[0].equals("")){
                 return !file.exists();
@@ -24,12 +24,12 @@ public class FileWorker {
         return false;
     }
 
-    public static boolean verifyFileEnding(File file) {
+    public boolean verifyFileEnding(File file) {
         final String ending = fileEnding(file);
         return Arrays.stream(fileEndings).anyMatch(p -> p.equals(ending));
     }
 
-    public static String fileEnding(File file) {
+    public String fileEnding(File file) {
         String sep = "\\.";
         if (file.getName().split(sep).length > 1 && file.getName().contains(".")) {
             return file.getName().split(sep)[file.getName().split(sep).length - 1];

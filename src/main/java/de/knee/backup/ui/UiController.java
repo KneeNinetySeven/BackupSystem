@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
  */
 public class UiController implements Initializable {
 
+    private final FileWorker fileWorker = new FileWorker();
     ObservableList<String> paths;
     TreeItem<String> treeRoot;
 
@@ -84,7 +85,7 @@ public class UiController implements Initializable {
     @FXML
     protected void checkTargetDirExistence(){
         File targetDirFile = new File(targetDir.getText());
-        if(!FileWorker.verifyPath(targetDirFile)){
+        if(fileWorker.verifyPath(targetDirFile)){
             dirValid = false;
             targetDirValid.setText("Directory not existent");
         } else {
@@ -104,7 +105,7 @@ public class UiController implements Initializable {
         File targetFile = new File(targetDir.getText() + "/" + targetName.getText());
         String text = "";
 
-        if(FileWorker.verifyFile(targetFile)){
+        if(fileWorker.verifyFile(targetFile)){
             text = "File okay";
             fileValid = true;
         } else {
@@ -112,8 +113,8 @@ public class UiController implements Initializable {
             fileValid = false;
         }
 
-        if(!FileWorker.verifyFileEnding(targetFile)){
-            text += "\nInvalid file ending " + FileWorker.fileEnding(targetFile) + "!";
+        if(! fileWorker.verifyFileEnding(targetFile)){
+            text += "\nInvalid file ending " + fileWorker.fileEnding(targetFile) + "!";
             fileValid = false;
         }
 

@@ -18,11 +18,10 @@ public class ViewTreeBuilder {
         if(content == null) return treeRoot;
         for (File item : content) {
             if (item.isDirectory()) {
-                treeRoot.getChildren().add(ViewTreeBuilder.buildRecursiveFromPath(item.getPath(), new TreeItem<String>()));
+                treeRoot.getChildren().add(ViewTreeBuilder.buildRecursiveFromPath(item.getPath(), new TreeItem<>()));
             } else if (item.isFile()) {
-                TreeItem<String> newItem = new TreeItem<String>();
+                TreeItem<String> newItem = new TreeItem<>();
                 newItem.setValue(item.getName());
-
                 treeRoot.getChildren().add(newItem);
             }
         }
